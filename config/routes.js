@@ -17,10 +17,13 @@ module.exports= function(router) {
     // add articles to saved list
     router.post("/api/saved", function(req, res) {
         Article.insert({
-            title: req.body.title,
-            date: req.body.date,
-            url: req.body.web_url
+            title: req.docs.headline,
+            date: req.docs.pub_date,
+            url: req.docs.web_url
         })
     });
-    // remove article from 
-}
+    // remove article
+    router.delete("/api/saved". function(req, res) {
+        Article.remove(({_id: req.body._id}))
+    });
+};

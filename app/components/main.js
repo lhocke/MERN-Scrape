@@ -1,13 +1,54 @@
 var React = require('react');
 var Search = require('./children/Search');
 var Saved = require('./children/Saved');
-
-// class Main extends React.Component{
-    
+var helpers = require('./utils/helpers')
+//Using extends to comply with future convention 
 class Main extends React.Component {
+    // lifecycle events
     constructor(props) {
         super(props);
-        this.state = {searchTerm: " ", startYear:"", endYear:"", numResults:"", results: "", saved: ""}
+        this.state = {searchTerm: "", startYear: "", endYear: "", numResults: "5", results: [], saved: ""}
+        this.setTerm = this.setTerm.bind(this)
+        this.componentDidUpdate = this.componentDidUpdate.bind(this)
+    }
+    setTerm(term, num, start, end) {
+        if (start !== "" && end !== "") {
+            this.setState({
+                searchTerm: term,
+                numResults: num,
+                startYear: start,
+                endYear: end
+            })
+        } else if (start === "" && end === "") {
+            this.setState({
+                searchTerm: term,
+                numResults: num,
+                startYear: 0,
+                endYear: 0
+            })
+        } else if (start !== "" && end === "") {
+            this.setState({
+                searchTerm: term,
+                numResults: num,
+                startYear: start,
+                endYear: 0
+            })
+        } else if (start === "" && end !== "") {
+            this.setState({
+                searchTerm: term,
+                numResults: num,
+                startYear: 0,
+                endYear: end
+            })
+        }
+    }
+    componentDidUpdate() {
+        helpers.runQuery(this.state.searchTerm, this.state.numResults, this.state.startYear, this.state.endYear).then(function(data) {
+            if (data) {
+                console.log(data)
+                this.setState({results: [data]})
+            }
+        })
     }
     render() {
         return (

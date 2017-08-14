@@ -1,10 +1,14 @@
 var React = require('react');
 var Search = require('./children/Search');
+var Saved = require('./children/Saved');
 
-class Main extends React.Component{
-    getInitialState() {
-        return( {searchTerm: "", results: "", saved: ""})
-    },
+// class Main extends React.Component{
+    
+class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {searchTerm: "", results: "", saved: ""}
+    }
     render() {
         return (
             <div className="container">
@@ -16,16 +20,7 @@ class Main extends React.Component{
                 </div>
 
                 <div className="row">
-                    <div className="col-sm-12">
-                        <br/>
-                        <div className="panel panel-primary">
-                            <div className="panel-heading">
-                                <h3 className="panel-title"><i className="fa fa-table"></i>   Top Articles</h3>
-                            </div>
-                            <div className="panel-body" id="well-section">
-                            </div>
-                        </div>
-                    </div>
+                    <Saved />
                 </div>
                 <div className="row">
                     <div className="col-sm-12">

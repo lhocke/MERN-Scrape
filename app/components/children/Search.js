@@ -23,7 +23,7 @@ class Search extends React.Component{
                                 <form role="form">
                                     <div className="form-group">
                                         <label htmlFor="search">Search Term:</label>
-                                        <input value={this.state.term} type="text" className="form-control" id="search-term" onChange={this.handleChange} required/>
+                                        <input value={this.props.searchTerm} type="text" className="form-control" id="search-term" onChange={this.handleChange} required/>
                                     </div>
 
                                     <div className="form-group">

@@ -7,7 +7,7 @@ var Saved = require('./children/Saved');
 class Main extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {searchTerm: "", startYear:"", endYear:"", numResults:"", results: "", saved: ""}
+        this.state = {searchTerm: " ", startYear:"", endYear:"", numResults:"", results: "", saved: ""}
     }
     render() {
         return (

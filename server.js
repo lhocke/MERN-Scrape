@@ -23,6 +23,7 @@ if (process.env.MONGODB_URI) {
         useMongoClient: true
     });
 };
+// mongoose.connect("mongodb://localhost/nytreact")
 var db = mongoose.connection;
 // confirm successful connection or log error
 db.once("error", function(error) {

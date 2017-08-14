@@ -4,9 +4,10 @@ var helpers = require("../utils/helpers");
 class Search extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {searchTerm:"", numResults: "5", startYear: "", endYear: ""}
+        this.state = {searchTerm:"", numResults: "5", startYear: "", endYear: "", saved: ""}
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.click = this.click.bind(this);
     }
     handleChange(event) {
         const target = event.target;
@@ -28,11 +29,16 @@ class Search extends React.Component{
             searchTerm: "",
             numResults: "5",
             startYear: "",
-            endYear: ""
+            endYear: "",
+            saved: ""
         })
     }
     handleReset() {
         $('#well-section').empty()
+    }
+    click(button){
+        console.log(event)
+        console.log(button.value)
     }
     render() {
         return (
@@ -85,9 +91,9 @@ class Search extends React.Component{
                             </div>
                             <div className="panel-body" id="well-section">
                                 {this.props.results.map(function(search, i) {
-                                    console.log(i)
+                                    // console.log(search)
                                     return (
-                                        <div key={i} className="row">
+                                        <div key={i} className="row" id={i}>
                                             <div className="col-sm-10">
                                                 <a href={search.web_url}>
                                                     <h3>{search.headline.main}</h3>
@@ -95,7 +101,7 @@ class Search extends React.Component{
                                                 <p>{search.snippet}</p>
                                             </div>
                                             <div className="col-sm-2">
-                                                <button type="button" className="btn btn-danger" id="save-article" onClick={this.props.saveArticle}>Save This</button>
+                                                <button type="button" value={search} className="btn btn-danger" id="save-article" onClick={this.click}>Save This</button>
                                             </div>
                                         </div>
                                     )

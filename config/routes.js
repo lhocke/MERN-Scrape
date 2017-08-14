@@ -8,7 +8,7 @@ module.exports = function(router) {
     // search mongo for saved articles and display them
     router.get("/api/saved", function(req, res) {
         Article.find({saved:true}).sort({id: -1})
-          .exec(function(err, dob) {
+          .exec(function(err, doc) {
             res.json(doc)
           })
     });

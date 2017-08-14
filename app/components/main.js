@@ -53,9 +53,9 @@ class Main extends React.Component {
             }
         }.bind(this))
     }
-    saveArticle(event) {
-        console.log("clicked")
-        helpers.savePost().then(function(){}.bind(this))
+    saveArticle(article) {
+        console.log(article)
+        helpers.savePost(article).then(function(){}.bind(this))
     }
     // render page
     render() {

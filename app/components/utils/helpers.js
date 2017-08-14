@@ -29,7 +29,9 @@ var helper = {
     },
     // add articles to db
     savePost: function(data) {
+        console.log(data)
         return axios.post("/api/saved")
+
     },
     // return saved articles from db
     getSaved: function() {
@@ -37,7 +39,7 @@ var helper = {
     },
     // delete article from db
     removeSaved: function(data) {
-        return axios.delete("/api/saved")
+        return axios.delete("/api/saved/:id")
     }
 }
 module.exports = helper;

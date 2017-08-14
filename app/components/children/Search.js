@@ -6,6 +6,7 @@ class Search extends React.Component{
         this.state = {searchTerm:"", numResults: "5", startYear: "", endYear: ""}
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleReset = this.handleReset.bind(this);
     }
     handleChange(event) {
         const target = event.target;
@@ -29,6 +30,10 @@ class Search extends React.Component{
             startYear: "",
             endYear: ""
         })
+    }
+    handleReset(event) {
+        console.log("clicked")
+        $('#well-section').empty()
     }
     render() {
         return (
@@ -65,7 +70,7 @@ class Search extends React.Component{
                                         <input name="endYear" value={this.state.endYear} type="text" className="form-control" id="end-year" onChange={this.handleChange}/>
                                     </div>
                                     <button type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search</button>
-                                    <button type="button" className="btn btn-default" id="clear-all"><i className="fa fa-trash"></i> Clear Results</button>
+                                    <button type="button" className="btn btn-default" id="clear-all" onClick={this.handleReset}><i className="fa fa-trash"></i> Clear Results</button>
                                 </form>
                             </div>
                         </div>

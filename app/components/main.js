@@ -1,12 +1,15 @@
 var React = require('react');
-var Search = require('./children/Saved')
+var Search = require('./children/Search');
 
-var Main = React.createClass({
-    render: function() {
+class Main extends React.Component{
+    getInitialState() {
+        return( {searchTerm: "", results: "", saved: ""})
+    },
+    render() {
         return (
             <div className="container">
-                <div className="jumbotron" style="background-color: #20315A ; color: white;">
-                    <h1 className="text-center"><strong><i className="fa fa-newspaper-o"></i> New York Times Search</strong></h1>
+                <div className="jumbotron">
+                    <h1 className="text-center"><i className="fa fa-newspaper-o"></i> New York Times Search</h1>
                 </div>
                 <div className="row">
                     <Search />
@@ -17,7 +20,7 @@ var Main = React.createClass({
                         <br/>
                         <div className="panel panel-primary">
                             <div className="panel-heading">
-                                <h3 className="panel-title"><strong><i className="fa fa-table"></i>   Top Articles</strong></h3>
+                                <h3 className="panel-title"><i className="fa fa-table"></i>   Top Articles</h3>
                             </div>
                             <div className="panel-body" id="well-section">
                             </div>
@@ -27,13 +30,11 @@ var Main = React.createClass({
                 <div className="row">
                     <div className="col-sm-12">
                         <hr/>
-                        {//<Saved />
-                        }
                     </div>
                 </div>
             </div>
-        )
+        );
     }
-})
+};
 
 module.exports = Main;

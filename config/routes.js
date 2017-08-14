@@ -1,6 +1,6 @@
 // NYTimes API Key
 // var authKey = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
-var Article = require('./models/Article')
+var Article = require('../models/Article')
 
 module.exports= function(router) {
     // render home page
@@ -23,7 +23,7 @@ module.exports= function(router) {
         })
     });
     // remove article
-    router.delete("/api/saved". function(req, res) {
+    router.delete("/api/saved", function(req, res) {
         Article.remove(({_id: req.body._id}))
     });
 };

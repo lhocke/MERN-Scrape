@@ -1,6 +1,16 @@
 var React = require('react');
+var helpers = require("../utils/helpers");
 
 class Saved extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {saved: []}
+    }
+    // componentDidMount() {
+    //     helpers.getSaved().then(function(data){
+    //         this.setState({saved: data})
+    //     }.bind(this));
+    // }
     render() {
         return (
         <div className="col-sm-12">

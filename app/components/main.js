@@ -9,8 +9,10 @@ class Main extends React.Component {
         super(props);
         this.state = {searchTerm: "", startYear: "", endYear: "", numResults: "5", results: [], saved: ""}
         this.setTerm = this.setTerm.bind(this)
+        this.saveArticle= this.saveArticle.bind(this)
         // this.componentDidUpdate = this.componentDidUpdate.bind(this)
     }
+    // get search terms for api call
     setTerm(term, num, start, end) {
         if (start !== "" && end !== "") {
             this.setState({
@@ -42,6 +44,7 @@ class Main extends React.Component {
             })
         }
     }
+    // listen for update to the component state
     componentDidUpdate() {
         helpers.runQuery(this.state.searchTerm, this.state.numResults, this.state.startYear, this.state.endYear).then(function(data) {
             if (data) {
@@ -50,6 +53,11 @@ class Main extends React.Component {
             }
         }.bind(this))
     }
+    saveArticle(event) {
+        console.log("clicked")
+        helpers.savePost().then(function(){}.bind(this))
+    }
+    // render page
     render() {
         return (
             <div className="container">
@@ -57,7 +65,7 @@ class Main extends React.Component {
                     <h1 className="text-center"><i className="fa fa-newspaper-o"></i> New York Times Search</h1>
                 </div>
                 
-                <Search setTerm={this.setTerm} results={this.state.results} />
+                <Search setTerm={this.setTerm} results={this.state.results} saveArticle={this.saveArticle}/>
 
                 <div className="row">
                     <Saved />

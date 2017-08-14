@@ -1,8 +1,6 @@
-// NYTimes API Key
-// var authKey = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
 var Article = require('../models/Article')
 
-module.exports= function(router) {
+module.exports = function(router) {
     // render home page
     router.get("/", function(req, res) {
         res.sendFile(__dirname + "/public/index.html")

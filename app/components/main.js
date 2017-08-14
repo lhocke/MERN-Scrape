@@ -7,7 +7,7 @@ var Saved = require('./children/Saved');
 class Main extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {searchTerm: "", results: "", saved: ""}
+        this.state = {searchTerm: "", startYear:"", endYear:"", numResults:"", results: "", saved: ""}
     }
     render() {
         return (
@@ -15,9 +15,8 @@ class Main extends React.Component {
                 <div className="jumbotron">
                     <h1 className="text-center"><i className="fa fa-newspaper-o"></i> New York Times Search</h1>
                 </div>
-                <div className="row">
-                    <Search />
-                </div>
+                
+                <Search setTerm={this.setTerm} />
 
                 <div className="row">
                     <Saved />

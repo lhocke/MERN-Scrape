@@ -7,7 +7,7 @@ class Saved extends React.Component {
             <br/>
             <div className="panel panel-primary">
                 <div className="panel-heading">
-                    <h3 className="panel-title"><i className="fa fa-table"></i>   Top Articles</h3>
+                    <h3 className="panel-title"><i className="fa fa-table"></i>   Saved Articles</h3>
                 </div>
                 <div className="panel-body" id="well-section">
                 </div>

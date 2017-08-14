@@ -80,6 +80,16 @@ class Search extends React.Component{
                                 <h3 className="panel-title"><i className="fa fa-table"></i>   Top Articles</h3>
                             </div>
                             <div className="panel-body" id="well-section">
+                                {this.props.results.map(function(search, i) {
+                                    return (
+                                        <div>
+                                        <a href={search.web_url}>
+                                            <h3 key={i}>{search.headline.main}</h3>
+                                        </a>
+                                        <p>{search.snippet}</p>
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>

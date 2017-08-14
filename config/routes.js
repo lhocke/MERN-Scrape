@@ -15,9 +15,9 @@ module.exports = function(router) {
     // add articles to saved list
     router.post("/api/saved", function(req, res) {
         Article.insert({
-            title: req.docs.headline,
-            date: req.docs.pub_date,
-            url: req.docs.web_url
+            title: req.headline,
+            date: req.pub_date,
+            url: req.web_url
         })
     });
     // remove article

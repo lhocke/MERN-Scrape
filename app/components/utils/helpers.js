@@ -1,10 +1,10 @@
 var axios = require("axios");
 // NYTimes API Key
-var timesKey = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
+var timesKey = "049b820e0acb40e58c6ecbd316c73ea6";
 var queryBase = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + timesKey + "&q=";
 
 var helper = {
-    
+    // search for articles
     runQuery: function(search, num, start, end) {
         var queryURL = queryBase + search;
         // num = num - 1
@@ -26,6 +26,18 @@ var helper = {
                 return data
             }
         })
+    },
+    // add articles to db
+    savePost: function(data) {
+        return axios.post("/api/saved")
+    },
+    // return saved articles from db
+    getSaved: function() {
+        return axios.get("/api/saved")
+    },
+    // delete article from db
+    removeSaved: function(data) {
+        return axios.delete("/api/saved")
     }
 }
 module.exports = helper;

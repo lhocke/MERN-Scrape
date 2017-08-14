@@ -9,7 +9,7 @@ class Main extends React.Component {
         super(props);
         this.state = {searchTerm: "", startYear: "", endYear: "", numResults: "5", results: [], saved: ""}
         this.setTerm = this.setTerm.bind(this)
-        this.componentDidUpdate = this.componentDidUpdate.bind(this)
+        // this.componentDidUpdate = this.componentDidUpdate.bind(this)
     }
     setTerm(term, num, start, end) {
         if (start !== "" && end !== "") {
@@ -46,9 +46,9 @@ class Main extends React.Component {
         helpers.runQuery(this.state.searchTerm, this.state.numResults, this.state.startYear, this.state.endYear).then(function(data) {
             if (data) {
                 console.log(data)
-                this.setState({results: [data]})
+                this.setState({results: data})
             }
-        })
+        }.bind(this))
     }
     render() {
         return (
@@ -57,7 +57,7 @@ class Main extends React.Component {
                     <h1 className="text-center"><i className="fa fa-newspaper-o"></i> New York Times Search</h1>
                 </div>
                 
-                <Search setTerm={this.setTerm} />
+                <Search setTerm={this.setTerm} results={this.state.results} />
 
                 <div className="row">
                     <Saved />

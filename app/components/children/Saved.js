@@ -1,5 +1,5 @@
-var React = require('react');
-var helpers = require("../utils/helpers");
+import React from 'react'
+import helpers from '../utils/helpers'
 
 class Saved extends React.Component {
     constructor(props) {
@@ -26,4 +26,4 @@ class Saved extends React.Component {
         );
     }
 }
-module.exports = Saved;
+export default Saved;

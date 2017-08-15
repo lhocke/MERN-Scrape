@@ -1,12 +1,12 @@
-var mongoose = require('mongoose');
-var logger = require('morgan');
-var express = require('express');
-var bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-var app = express();
+const app = express();
 
-var router = express.Router();
-require("./config/routes")(router);
+const router = express.Router();
+require("./app/config/routes")(router);
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -15,16 +15,16 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json"} ));
 app.use(express.static("public"));
 // create connection to db
-var databaseUri = "mongodb://localhost/nytreact"
-if (process.env.MONGODB_URI) {
-    mongoose.connect(process.env.MONGODB_URI, {});
-} else {
-    mongoose.connect(databaseUri, {
-        useMongoClient: true
-    });
-};
-// mongoose.connect("mongodb://localhost/nytreact")
-var db = mongoose.connection;
+const databaseUri = "mongodb://localhost/nytreact"
+// if (process.env.MONGODB_URI) {
+//     mongoose.connect(process.env.MONGODB_URI, {});
+// } else {
+//     mongoose.connect(databaseUri, {
+//         useMongoClient: true
+//     });
+// };
+mongoose.connect("mongodb://localhost/nytreact")
+const db = mongoose.connection;
 // confirm successful connection or log error
 db.once("error", function(error) {
     console.log("Mongoose error:", error);
@@ -35,7 +35,7 @@ db.once("open", function() {
 
 app.use(router)
 
-var PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 7000;
 
 app.listen(PORT, function() {
     console.log("Listening on port:", PORT)

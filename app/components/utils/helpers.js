@@ -1,11 +1,11 @@
-var axios = require("axios");
+import axios from "axios";
 // NYTimes API Key
-var timesKey = "049b820e0acb40e58c6ecbd316c73ea6";
-var queryBase = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + timesKey + "&q=";
+const timesKey = "049b820e0acb40e58c6ecbd316c73ea6";
+const queryBase = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${timesKey}&q=`;
 
-var helper = {
+const helper = {
     // search for articles
-    runQuery: function(search, num, start, end) {
+    runQuery: (search, num, start, end) => {
         var queryURL = queryBase + search;
         // num = num - 1
         if (start !== 0) {
@@ -15,7 +15,7 @@ var helper = {
             queryURL += "&end_date" + end + "1231"
         }
         console.log(queryURL)
-        return axios.get(queryURL).then(function(response) {
+        return axios.get(queryURL).then( (response) => {
             var docs = response.data.response.docs;
             var data = [];
             // console.log(docs[0,4]);
@@ -28,18 +28,19 @@ var helper = {
         })
     },
     // add articles to db
-    savePost: function(data) {
-        console.log(data)
+    savePost: (data) => {
+        console.log(data.headline.main)
+        console.log(data.web_url)
         return axios.post("/api/saved")
 
     },
     // return saved articles from db
-    getSaved: function() {
+    getSaved: () => {
         return axios.get("/api/saved")
     },
     // delete article from db
-    removeSaved: function(data) {
+    removeSaved: (data) => {
         return axios.delete("/api/saved/:id")
     }
 }
-module.exports = helper;
+export default helper

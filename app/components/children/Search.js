@@ -1,13 +1,13 @@
-var React = require('react');
-var helpers = require("../utils/helpers");
+import React from 'react';
+import helpers from "../utils/helpers";
 
 class Search extends React.Component{
+    // define initial values
     constructor(props) {
         super(props);
         this.state = {searchTerm:"", numResults: "5", startYear: "", endYear: "", saved: ""}
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.click = this.click.bind(this);
     }
     handleChange(event) {
         const target = event.target;
@@ -18,7 +18,7 @@ class Search extends React.Component{
         });
     }
     handleSubmit(event) {
-        event.preventDefault();
+        event.preventDefault(); 
         this.props.setTerm(
             this.state.searchTerm,
             this.state.numResults,
@@ -36,10 +36,7 @@ class Search extends React.Component{
     handleReset() {
         $('#well-section').empty()
     }
-    click(button){
-        console.log(event)
-        console.log(button.value)
-    }
+    // render search component
     render() {
         return (
             <div>
@@ -90,10 +87,11 @@ class Search extends React.Component{
                                 <h3 className="panel-title"><i className="fa fa-table"></i>   Top Articles</h3>
                             </div>
                             <div className="panel-body" id="well-section">
-                                {this.props.results.map(function(search, i) {
-                                    // console.log(search)
+                                {this.props.results.map((search, i) => {
+                                    console.log(search)
+                                    var article = `article ${i}`
                                     return (
-                                        <div key={i} className="row" id={i}>
+                                        <div key={i} className="row">
                                             <div className="col-sm-10">
                                                 <a href={search.web_url}>
                                                     <h3>{search.headline.main}</h3>
@@ -101,11 +99,11 @@ class Search extends React.Component{
                                                 <p>{search.snippet}</p>
                                             </div>
                                             <div className="col-sm-2">
-                                                <button type="button" value={search} className="btn btn-danger" id="save-article" onClick={this.click}>Save This</button>
+                                                <button type="button" className="btn btn-danger" id="save-article" onClick={() => {this.props.saveArticle(search)}}>Save This</button>
                                             </div>
                                         </div>
                                     )
-                                }.bind(this))}
+                                })}
                             </div>
                         </div>
                     </div>
@@ -115,4 +113,4 @@ class Search extends React.Component{
     }
 };
 
-module.exports = Search;
+export default Search;

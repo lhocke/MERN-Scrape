@@ -1,7 +1,7 @@
-var React = require('react');
-var Search = require('./children/Search');
-var Saved = require('./children/Saved');
-var helpers = require('./utils/helpers')
+import React from 'react';
+import Search from './children/Search';
+import Saved from './children/Saved';
+import helpers from './utils/helpers';
 //Using extends to comply with future convention 
 class Main extends React.Component {
     // lifecycle events
@@ -45,17 +45,18 @@ class Main extends React.Component {
         }
     }
     // listen for update to the component state
-    componentDidUpdate() {
-        helpers.runQuery(this.state.searchTerm, this.state.numResults, this.state.startYear, this.state.endYear).then(function(data) {
+    componentDidUpdate(prevProps, prevState) {
+        helpers.runQuery(this.state.searchTerm, this.state.numResults, this.state.startYear, this.state.endYear).then((data) => {
             if (data) {
-                console.log(data)
+                // console.log(data)
                 this.setState({results: data})
             }
-        }.bind(this))
+        })
     }
     saveArticle(article) {
-        console.log(article)
-        helpers.savePost(article).then(function(){}.bind(this))
+        console.log("clicked")
+        // console.log(article)
+        helpers.savePost(article).then(console.log("saved"))
     }
     // render page
     render() {
@@ -64,9 +65,11 @@ class Main extends React.Component {
                 <div className="jumbotron">
                     <h1 className="text-center"><i className="fa fa-newspaper-o"></i> New York Times Search</h1>
                 </div>
-                
-                <Search setTerm={this.setTerm} results={this.state.results} saveArticle={this.saveArticle}/>
-
+                <div className="row">
+                    <div className="col-sm-12">
+                        <Search setTerm={this.setTerm} results={this.state.results} saveArticle={this.saveArticle}/>
+                    </div>
+                </div>
                 <div className="row">
                     <Saved />
                 </div>
@@ -80,4 +83,4 @@ class Main extends React.Component {
     }
 };
 
-module.exports = Main;
+export default Main;

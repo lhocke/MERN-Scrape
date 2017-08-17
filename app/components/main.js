@@ -1,7 +1,9 @@
 import React from 'react';
+import Found from './children/Found';
 import Search from './children/Search';
 import Saved from './children/Saved';
 import helpers from './utils/helpers';
+
 //Using extends to comply with future convention 
 class Main extends React.Component {
     // lifecycle events
@@ -68,6 +70,11 @@ class Main extends React.Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <Search setTerm={this.setTerm} results={this.state.results} saveArticle={this.saveArticle}/>
+                    </div>
+                </div>
+                <div className = "row">
+                    <div className="col-sm-12">
+                        <Found results={this.state.results} saveArticle={this.saveArticle} />
                     </div>
                 </div>
                 <div className="row">

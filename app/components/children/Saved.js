@@ -4,6 +4,15 @@ var helpers = require('../utils/helpers')
 class Saved extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {saved: []}
+    }
+    componentDidMount(){
+        helpers.getSaved().then((returned)=>{
+            console.log("retrieving")
+            let data = returned.data
+            this.setState({saved: data})
+            // console.log(this.state.saved)
+        });
     }
     render() {
         return (
@@ -15,7 +24,7 @@ class Saved extends React.Component {
                         <h3 className="panel-title"><i className="fa fa-table"></i>   Saved Articles</h3>
                     </div>
                     <div className="panel-body" id="well-section">
-                        {this.props.saved.map((article, i) => {
+                        {this.state.saved.map((article, i) => {
                             return (
                                 <div key={i} className="row">
                                     <div className="col-sm-10">

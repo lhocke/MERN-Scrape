@@ -4,9 +4,9 @@ import Search from './children/Search';
 import Saved from './children/Saved';
 import helpers from './utils/helpers';
 
-var router = require("react-router-dom")
-var Link = router.Link;
-var Route = router.Route;
+// var router = require("react-router-dom")
+// import {Link} from "react-router-dom";
+import {Switch, Route, Link} from "react-router-dom";
 
 //Using extends to comply with future convention 
 class Main extends React.Component {
@@ -87,30 +87,42 @@ class Main extends React.Component {
     // render page
     render() {
         return (
+            <div>
+            <nav className="navbar navbar-default">
+                <div className="container-fluid">
+                    <ul className="nav navbar navbar-right">
+                        <li><Link to="/">Search</Link></li>
+                        <li><Link to="/saved">Saved Articles</Link></li>
+                    </ul>
+                </div>
+            </nav>
             <div className="container">
                 <div className="jumbotron">
                     <h1 className="text-center"><i className="fa fa-newspaper-o"></i> New York Times Search</h1>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        <Search setTerm={this.setTerm} />
+                    <Switch>
+                        <Route exact path="/" render={(props)=>(
+                            <div>
+                            <Search {...props}
+                                setTerm={this.setTerm}/>
+                            <Found {...props}
+                                results={this.state.results} saveArticle={this.saveArticle} />
+                            </div>
+                            )}
+
+                        />
+                        <Route exact patch="/saved" render={(props) => (
+                            <Saved {...props}
+                                delete={this.deleteArticle} getArticles={this.getArticles}
+                                />
+                            )}
+                        />
+                    </Switch>
                     </div>
                 </div>
-                <div className = "row">
-                    <div className="col-sm-12">
-                        <Found results={this.state.results} saveArticle={this.saveArticle} />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-12">
-                        <Saved saved={this.state.saved} delete={this.deleteArticle}/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-12">
-                        <hr/>
-                    </div>
-                </div>
+            </div>
             </div>
         );
     }

@@ -72,7 +72,6 @@ class Main extends React.Component {
         helpers.getSaved().then((returned)=>{
             let data = returned.data
             this.setState({saved: data})
-            // console.log(this.state.saved)
         });
     }
     saveArticle(article) {
@@ -80,7 +79,6 @@ class Main extends React.Component {
     }
     deleteArticle(article) {
         helpers.removeSaved(article).then(this.getArticles());
-        // this.getArticles();
     }
     // render page
     render() {

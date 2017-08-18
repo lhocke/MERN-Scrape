@@ -44,14 +44,12 @@ const helper = {
     // return saved articles from db
     getSaved: () => {
         return axios.get("/api/saved")
-        // .then((result) =>{
-        //     console.log(result)
-        //     return result
-        // })
     },
     // delete article from db
     removeSaved: (data) => {
-        return axios.delete("/api/saved/:id")
+        // console.log("clicked to remove")
+        // console.log(data._id)
+        return axios.delete('/api/saved/' + data._id)
     }
 }
 export default helper

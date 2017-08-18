@@ -6,9 +6,9 @@ module.exports = function(router) {
         res.sendFile(__dirname + "/public/index.html")
     });
     // search mongo for saved articles and display them
-    router.get("/api/saved", function(req, res) {
+    router.get("/api/saved", (req, res) => {
         Article.find({}).sort({id: -1})
-          .exec(function(err, doc) {
+          .exec((err, doc) =>{
             res.json(doc)
           })
     });
@@ -23,8 +23,23 @@ module.exports = function(router) {
             }
         })
     });
+    router.get("/api/saved/:id", (req,res) => {
+        console.log(req.params.id)
+        Article.findById(req.params.id, (err, doc) => {
+            if (err) throw err;
+            else {
+                res.json(doc)
+            }
+        })
+    })
     // remove article
-    router.delete("/api/saved", function(req, res) {
-        Article.remove(({_id: req.body._id}))
+    router.delete("/api/saved/:id", function(req, res) {
+        console.log(req.params)
+        Article.findByIdAndRemove(req.params.id, (err, todo) => {
+            if (err) throw err;
+            else {
+                res.send(todo)
+            }
+        })
     });
 };

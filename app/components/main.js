@@ -9,10 +9,10 @@ class Main extends React.Component {
     // lifecycle events
     constructor(props) {
         super(props);
-        this.state = {searchTerm: "", startYear: "", endYear: "", numResults: "5", results: [], saved: ""}
-        this.setTerm = this.setTerm.bind(this)
-        this.saveArticle= this.saveArticle.bind(this)
-        // this.componentDidUpdate = this.componentDidUpdate.bind(this)
+        this.state = {searchTerm: "", startYear: "", endYear: "", numResults: "5", results: [], saved: []}
+        this.setTerm = this.setTerm.bind(this);
+        this.saveArticle= this.saveArticle.bind(this);
+        this.deleteArticle = this.deleteArticle.bind(this);
     }
     // get search terms for api call
     setTerm(term, num, start, end) {
@@ -48,15 +48,39 @@ class Main extends React.Component {
     }
     // listen for update to the component state
     componentDidUpdate(prevProps, prevState) {
-        helpers.runQuery(this.state.searchTerm, this.state.numResults, this.state.startYear, this.state.endYear).then((data) => {
-            if (data) {
-                // console.log(data)
-                this.setState({results: data})
-            }
-        })
+        if (prevState.searchTerm !== this.state.searchTerm) {
+            helpers.runQuery(this.state.searchTerm,
+                this.state.numResults,
+                this.state.startYear,
+                this.state.endYear)
+            .then((data) => {
+                if (data) {
+                    this.setState({results: data})
+                }
+            })
+        }
+        
+    }
+    componentDidMount() {
+        helpers.getSaved().then((returned)=>{
+            let data = returned.data
+            this.setState({saved: data})
+            // console.log(this.state.saved)
+        });
+    }
+    getArticles() {
+        helpers.getSaved().then((returned)=>{
+            let data = returned.data
+            this.setState({saved: data})
+            // console.log(this.state.saved)
+        });
     }
     saveArticle(article) {
         helpers.savePost(article)
+    }
+    deleteArticle(article) {
+        helpers.removeSaved(article).then(this.getArticles());
+        // this.getArticles();
     }
     // render page
     render() {
@@ -67,7 +91,7 @@ class Main extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        <Search setTerm={this.setTerm} results={this.state.results} saveArticle={this.saveArticle}/>
+                        <Search setTerm={this.setTerm} />
                     </div>
                 </div>
                 <div className = "row">
@@ -76,7 +100,7 @@ class Main extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <Saved />
+                    <Saved saved={this.state.saved} delete={this.deleteArticle}/>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">

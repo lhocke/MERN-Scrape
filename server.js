@@ -16,14 +16,14 @@ app.use(bodyParser.json({ type: "application/vnd.api+json"} ));
 app.use(express.static("public"));
 // create connection to db
 const databaseUri = "mongodb://localhost/nytreact"
-// if (process.env.MONGODB_URI) {
-//     mongoose.connect(process.env.MONGODB_URI, {});
-// } else {
-//     mongoose.connect(databaseUri, {
-//         useMongoClient: true
-//     });
-// };
-mongoose.connect("mongodb://localhost/nytreact")
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI, {});
+} else {
+    mongoose.connect(databaseUri, {
+        useMongoClient: true
+    });
+};
+// mongoose.connect("mongodb://localhost/nytreact")
 const db = mongoose.connection;
 // confirm successful connection or log error
 db.once("error", function(error) {

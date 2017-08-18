@@ -44,6 +44,10 @@ const helper = {
     // return saved articles from db
     getSaved: () => {
         return axios.get("/api/saved")
+        // .then((result) =>{
+        //     console.log(result)
+        //     return result
+        // })
     },
     // delete article from db
     removeSaved: (data) => {

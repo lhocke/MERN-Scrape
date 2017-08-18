@@ -7,7 +7,7 @@ module.exports = function(router) {
     });
     // search mongo for saved articles and display them
     router.get("/api/saved", function(req, res) {
-        Article.find({saved:true}).sort({id: -1})
+        Article.find({}).sort({id: -1})
           .exec(function(err, doc) {
             res.json(doc)
           })
@@ -16,11 +16,6 @@ module.exports = function(router) {
     router.post("/api/saved", (req, res) => {
         console.log("saving")
         const newArticle = new Article(req.body)
-        // article = new Article({
-        //     title: req.headline,
-        //     date: req.pub_date,
-        //     url: req.web_url
-        // })
         newArticle.save((err, doc) => {
             if (err) throw err; 
             else {

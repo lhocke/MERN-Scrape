@@ -56,8 +56,6 @@ class Main extends React.Component {
         })
     }
     saveArticle(article) {
-        console.log("clicked")
-        // console.log(article)
         helpers.savePost(article)
     }
     // render page

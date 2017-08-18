@@ -5,8 +5,6 @@ class Found extends React.Component {
     constructor(props) {
         super(props);
         this.state = {searchTerm:"", numResults: "5", startYear: "", endYear: "", saved: ""}
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleReset() {
         $('#well-section').empty()

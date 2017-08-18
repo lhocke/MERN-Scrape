@@ -9,6 +9,7 @@ class Search extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    // get changes in values as user enters them
     handleChange(event) {
         const target = event.target;
         const value = target.value;
@@ -17,6 +18,7 @@ class Search extends React.Component{
             [name]: value
         });
     }
+    // prevent reloading of page and send new state to main via setTerm
     handleSubmit(event) {
         event.preventDefault(); 
         this.props.setTerm(
@@ -33,6 +35,7 @@ class Search extends React.Component{
             saved: ""
         })
     }
+    // use jQuery to remove previously searched
     handleReset() {
         $('#well-section').empty()
     }
@@ -62,7 +65,6 @@ class Search extends React.Component{
                                             <option value="10">10</option>
                                         </select>
                                     </div>
-
                                     <div className="form-group">
                                         <label htmlFor="start-year">Start Year (Optional):</label>
                                         <input name="startYear" value={this.state.startYear} type="text" className="form-control" id="start-year" onChange={this.handleChange}/>
@@ -77,9 +79,7 @@ class Search extends React.Component{
                             </div>
                         </div>
                     </div>
-                </div>
-
-                
+                </div>            
             </div>
         );
     }

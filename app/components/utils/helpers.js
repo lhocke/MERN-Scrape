@@ -35,6 +35,7 @@ const helper = {
         axios.post("/api/saved", {
             title: data.headline.main,
             date: data.pub_date,
+            snippet: data.snippet,
             url: data.web_url}
             ).then((result) => {
             return result

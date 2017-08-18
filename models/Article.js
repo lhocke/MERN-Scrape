@@ -10,6 +10,9 @@ const ArticleSchema = new Schema({
         type: Date,
         required: true
     },
+    snippet: {
+        type: String,
+    },
     url: {
         type: String,
         required: true

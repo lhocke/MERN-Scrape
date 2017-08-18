@@ -34,12 +34,15 @@ module.exports = function(router) {
     })
     // remove article
     router.delete("/api/saved/:id", function(req, res) {
-        console.log(req.params)
+        // console.log(req.params)
         Article.findByIdAndRemove(req.params.id, (err, todo) => {
             if (err) throw err;
             else {
                 res.send(todo)
             }
         })
+    });
+    router.get("*", function(req, res) {
+        res.redirect("/");
     });
 };

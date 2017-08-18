@@ -1,5 +1,5 @@
-import React from 'react';
-import helpers from "../utils/helpers";
+var React = require('react');
+var helpers = require("../utils/helpers");
 
 class Search extends React.Component{
     // define initial values
@@ -42,44 +42,42 @@ class Search extends React.Component{
     // render search component
     render() {
         return (
-            <div>
-                <div className="row">
-                    <div className="col-sm-12">
-                        <br/>
-                        <div className="panel panel-primary">
-                            <div className="panel-heading">
-                                <h3 className="panel-title"><i className="fa fa-list-alt"></i>   Search Parameters</h3>
-                            </div>
-                            <div className="panel-body">
-                                <form role="form" onSubmit={this.handleSubmit}>
-                                    <div className="form-group">
-                                        <label htmlFor="search">Search Term:</label>
-                                        <input name="searchTerm" value={this.state.searchTerm} type="text" className="form-control" id="search-term" onChange={this.handleChange} required/>
-                                    </div>
+            <div className="row">
+                <div className="col-sm-12">
+                    <br/>
+                    <div className="panel panel-primary">
+                        <div className="panel-heading">
+                            <h3 className="panel-title"><i className="fa fa-list-alt"></i>   Search Parameters</h3>
+                        </div>
+                        <div className="panel-body">
+                            <form role="form" onSubmit={this.handleSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="search">Search Term:</label>
+                                    <input name="searchTerm" value={this.state.searchTerm} type="text" className="form-control" id="search-term" onChange={this.handleChange} required/>
+                                </div>
 
-                                    <div className="form-group">
-                                        <label htmlFor="pwd">Number of Records to Retrieve:</label>
-                                        <select name="numResults" value={this.state.numResults} className="form-control" id="num-records-select" onChange={this.handleChange} required>
-                                            <option value="1">1</option>
-                                            <option value="5">5</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="start-year">Start Year (Optional):</label>
-                                        <input name="startYear" value={this.state.startYear} type="text" className="form-control" id="start-year" onChange={this.handleChange}/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="end-year">End Year (Optional):</label>
-                                        <input name="endYear" value={this.state.endYear} type="text" className="form-control" id="end-year" onChange={this.handleChange}/>
-                                    </div>
-                                    <button type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search</button>
-                                    <button type="button" className="btn btn-default" id="clear-all" onClick={this.handleReset}><i className="fa fa-trash"></i> Clear Results</button>
-                                </form>
-                            </div>
+                                <div className="form-group">
+                                    <label htmlFor="pwd">Number of Records to Retrieve:</label>
+                                    <select name="numResults" value={this.state.numResults} className="form-control" id="num-records-select" onChange={this.handleChange} required>
+                                        <option value="1">1</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="start-year">Start Year (Optional):</label>
+                                    <input name="startYear" value={this.state.startYear} type="text" className="form-control" id="start-year" onChange={this.handleChange}/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="end-year">End Year (Optional):</label>
+                                    <input name="endYear" value={this.state.endYear} type="text" className="form-control" id="end-year" onChange={this.handleChange}/>
+                                </div>
+                                <button type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search</button>
+                                <button type="button" className="btn btn-default" id="clear-all" onClick={this.handleReset}><i className="fa fa-trash"></i> Clear Results</button>
+                            </form>
                         </div>
                     </div>
-                </div>            
+                </div>
             </div>
         );
     }

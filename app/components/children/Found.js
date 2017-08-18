@@ -1,5 +1,5 @@
-import React from 'react';
-import helpers from '../utils/helpers';
+var React = require('react');
+var helpers = require('../utils/helpers');
 
 class Found extends React.Component {
     constructor(props) {

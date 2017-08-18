@@ -52,4 +52,4 @@ const helper = {
         return axios.delete('/api/saved/' + data._id)
     }
 }
-export default helper
+module.exports = helper

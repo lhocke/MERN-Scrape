@@ -12,7 +12,7 @@ var Route = router.Route;
 var BrowserRouter = router.BrowserRouter;
 
 // Reference the high-level components
-var Main = require("../components/Main");
+import Main from "../components/Main";
 
 // Export the Routes
 module.exports = (

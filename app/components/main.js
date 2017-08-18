@@ -4,6 +4,10 @@ import Search from './children/Search';
 import Saved from './children/Saved';
 import helpers from './utils/helpers';
 
+var router = require("react-router-dom")
+var Link = router.Link;
+var Route = router.Route;
+
 //Using extends to comply with future convention 
 class Main extends React.Component {
     // lifecycle events
@@ -98,7 +102,9 @@ class Main extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <Saved saved={this.state.saved} delete={this.deleteArticle}/>
+                    <div className="col-sm-12">
+                        <Saved saved={this.state.saved} delete={this.deleteArticle}/>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">

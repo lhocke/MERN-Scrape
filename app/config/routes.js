@@ -1,29 +1,26 @@
-const Article = require('../../models/Article');
+// Inclue the React library
+var React = require("react");
 
-module.exports = function(router) {
-    // render home page
-    router.get("/", function(req, res) {
-        res.sendFile(__dirname + "/public/index.html")
-    });
-    // search mongo for saved articles and display them
-    router.get("/api/saved", function(req, res) {
-        Article.find({saved:true}).sort({id: -1})
-          .exec(function(err, doc) {
-            res.json(doc)
-          })
-    });
-    // add articles to saved list
-    router.post("/api/saved", (req, res) => {
-        console.log("saving")
-        article = new Article({
-            title: req.headline,
-            date: req.pub_date,
-            url: req.web_url
-        })
-        article.save((err, res) => {if (err) throw err; else {console.log(res)}})
-    });
-    // remove article
-    router.delete("/api/saved", function(req, res) {
-        Article.remove(({_id: req.body._id}))
-    });
-};
+// Include the react-router module
+var router = require("react-router-dom");
+
+// Include the Route component for displaying individual routes
+var Route = router.Route;
+
+// Include the Router component to contain all our Routes
+// Here where we can pass in some configuration as props
+var BrowserRouter = router.BrowserRouter;
+
+// Reference the high-level components
+var Main = require("../components/Main");
+
+// Export the Routes
+module.exports = (
+
+  // The high level component is the Router component
+  <BrowserRouter>
+
+    <Route component={Main} />
+
+  </BrowserRouter>
+);

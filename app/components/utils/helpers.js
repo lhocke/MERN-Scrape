@@ -14,7 +14,7 @@ const helper = {
         if (end !== 0) {
             queryURL += "&end_date" + end + "1231"
         }
-        console.log(queryURL)
+        // console.log(queryURL)
         return axios.get(queryURL).then( (response) => {
             var docs = response.data.response.docs;
             var data = [];
@@ -29,10 +29,16 @@ const helper = {
     },
     // add articles to db
     savePost: (data) => {
+
         console.log(data.headline.main)
         console.log(data.web_url)
-        return axios.post("/api/saved")
-
+        axios.post("/api/saved", {
+            title: data.headline.main,
+            date: data.pub_date,
+            url: data.web_url}
+            ).then((result) => {
+            return result
+        })
     },
     // return saved articles from db
     getSaved: () => {

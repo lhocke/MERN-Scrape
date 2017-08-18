@@ -90,9 +90,9 @@ class Main extends React.Component {
             <div>
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
-                    <ul className="nav navbar navbar-right">
-                        <li><Link to="/">Search</Link></li>
-                        <li><Link to="/saved">Saved Articles</Link></li>
+                    <ul className="nav navbar"> 
+                        <li className="navbar-right"><Link to="/">Search</Link></li>
+                        <li className="navbar-right"><Link to="/saved">Saved Articles</Link></li>
                     </ul>
                 </div>
             </nav>

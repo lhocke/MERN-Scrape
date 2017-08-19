@@ -62,14 +62,12 @@ class Main extends React.Component {
                     this.setState({results: data})
                 }
             })
-        }
-        
+        } 
     }
     componentDidMount() {
         helpers.getSaved().then((returned)=>{
             let data = returned.data
             this.setState({saved: data})
-            // console.log(this.state.saved)
         });
     }
     getArticles() {

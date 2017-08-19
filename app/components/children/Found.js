@@ -20,7 +20,6 @@ class Found extends React.Component {
                         </div>
                         <div className="panel-body" id="well-section">
                             {this.props.results.map((search, i) => {
-                                console.log(search)
                                 var article = `article ${i}`
                                 return (
                                     <div key={i} className="row">

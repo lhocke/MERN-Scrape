@@ -8,10 +8,8 @@ class Saved extends React.Component {
     }
     componentDidMount(){
         helpers.getSaved().then((returned)=>{
-            console.log("retrieving")
             let data = returned.data
             this.setState({saved: data})
-            // console.log(this.state.saved)
         });
     }
     render() {

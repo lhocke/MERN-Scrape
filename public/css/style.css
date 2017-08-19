@@ -1,12 +1,24 @@
+h1, h3 {
+    strong
+}
+
+/*body {
+    height: 95%;
+}*/
+
 .jumbotron {
     background-color: #20315A;
     color: white;"
 }
 
-h1, h3 {
-    strong
-}
-
 #save-article, #delete-article {
     margin-top: 25px;
+}
+
+#copy {
+    padding-top: 15px;
+}
+
+#components {
+    margin-bottom: 5%;
 }

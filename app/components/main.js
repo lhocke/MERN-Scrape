@@ -99,7 +99,7 @@ class Main extends React.Component {
                     <h1 className="text-center"><i className="fa fa-newspaper-o"></i> New York Times Search</h1>
                 </div>
                 <div className="row">
-                    <div className="col-sm-12">
+                    <div className="col-sm-12" id="components">
                     <Switch>
                         <Route exact path="/" render={(props)=>(
                             <div>

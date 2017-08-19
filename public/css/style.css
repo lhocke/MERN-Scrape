@@ -6,3 +6,7 @@
 h1, h3 {
     strong
 }
+
+#save-article, #delete-article {
+    margin-top: 25px;
+}

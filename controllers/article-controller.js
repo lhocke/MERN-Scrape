@@ -14,11 +14,11 @@ module.exports = function(router) {
     });
     // add articles to saved list
     router.post("/api/saved", (req, res) => {
-        console.log("saving")
         const newArticle = new Article(req.body)
         newArticle.save((err, doc) => {
-            if (err) throw err; 
-            else {
+            if (err === 11000) {
+                return false
+            } else {
                 res.send(doc)
             }
         })
@@ -34,7 +34,6 @@ module.exports = function(router) {
     })
     // remove article
     router.delete("/api/saved/:id", function(req, res) {
-        // console.log(req.params)
         Article.findByIdAndRemove(req.params.id, (err, todo) => {
             if (err) throw err;
             else {

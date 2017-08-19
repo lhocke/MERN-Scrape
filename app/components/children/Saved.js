@@ -35,7 +35,7 @@ class Saved extends React.Component {
                                         <hr/>
                                     </div>
                                     <div className="col-sm-2">
-                                        <button type="button" className="btn btn-danger" id="save-article" onClick={()=>{this.props.delete(article)}}>Delete This</button>
+                                        <button type="button" className="btn btn-danger" id="delete-article" onClick={()=>{this.props.delete(article)}}>Delete This</button>
                                     </div>
                                 </div>
                             )

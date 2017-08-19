@@ -7,18 +7,15 @@ const helper = {
     // search for articles
     runQuery: (search, num, start, end) => {
         var queryURL = queryBase + search;
-        // num = num - 1
         if (start !== 0) {
             queryURL+= "&begin_date=" + start + "0101";
         }
         if (end !== 0) {
             queryURL += "&end_date" + end + "1231"
         }
-        // console.log(queryURL)
         return axios.get(queryURL).then( (response) => {
             var docs = response.data.response.docs;
             var data = [];
-            // console.log(docs[0,4]);
             if (docs != null) {
                 for (var i = 0; i < num; i++) {
                     data.push(docs[i])
@@ -29,9 +26,6 @@ const helper = {
     },
     // add articles to db
     savePost: (data) => {
-
-        console.log(data.headline.main)
-        console.log(data.web_url)
         axios.post("/api/saved", {
             title: data.headline.main,
             date: data.pub_date,
@@ -47,8 +41,6 @@ const helper = {
     },
     // delete article from db
     removeSaved: (data) => {
-        // console.log("clicked to remove")
-        // console.log(data._id)
         return axios.delete('/api/saved/' + data._id)
     }
 }

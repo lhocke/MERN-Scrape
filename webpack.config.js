@@ -1,3 +1,6 @@
+path = require('path')
+const webpack = require('webpack');
+
 module.exports = {
     entry: "./app/app.js",
     output: {
@@ -15,5 +18,6 @@ module.exports = {
             }
         ]
     },
-    devtool: "eval-source-map"
+
+    devtool: 'cheap-module-source-map'
 }

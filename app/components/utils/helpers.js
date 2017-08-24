@@ -1,6 +1,6 @@
 import axios from "axios";
 // NYTimes API Key
-const timesKey = "049b820e0acb40e58c6ecbd316c73ea6";
+const timesKey = process.env.NYT_KEY;
 const queryBase = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${timesKey}&q=`;
 
 const helper = {

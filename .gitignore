@@ -1,5 +1,6 @@
 Walkthroughs
 .DS_Store
+.keys
 # Logs
 logs
 *.log
